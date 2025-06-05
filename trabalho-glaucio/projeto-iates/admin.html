@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Admin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=person" />
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+    
+  </head>
+
+  <body>
+    <div class="page">
+    <header>
+      <div id="title">
+        <img src="images/barco1.png" alt="ícone de barco" />
+        <div class="headtitle">
+          <h1>Luxo</h1>
+          <h2>Aluguel de iates</h2>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="navmenu">
+          <li><a href="index.html">Página inicial</a></li>
+          <li><a href="aluguel.html">Aluguel de iates</a></li>
+          <li><a href="admin.html" class="accent">ADMIN</a></li>
+          <li><a href="tripulacao.html">Tripulação</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="adminPage">
+      <div class="pagtitle">
+        <div class="bgtitle"></div>
+        <h2>ADMIN</h2>
+      </div>
+      <div id="login">
+        <h2>Login</h2>
+        <form>
+          <div class="admLogin">
+            <label for="emailLogin">
+              <span class="material-symbols-outlined">person</span>
+            </label>
+            <input type="text" id="emailLogin" placeholder="E-mail"/>
+          </div>
+          <div class="admLogin">
+            <label for="emailLogin">
+              <span>
+                <img src="images/lock.png" alt="">
+              </span>
+            </label>
+            <input type="password" id="senhaLogin" placeholder="Senha" />
+            <img id="visibility" onclick="seePassword()" src="images/on.png" alt="">
+          </div>
+        </form>
+        <div class="buttons">
+          <button class="button" onclick="validar()">ACESSAR</button>
+        </div>
+      </div>
+      </div>
+
+  </main>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+  </body>
+  <script>
+    let seeingPassword = false
+    imgVisibility = document.getElementById("visibility")
+    senha = document.getElementById('senhaLogin')
+    function seePassword(){
+
+      seeingPassword = !seeingPassword
+      console.log(seeingPassword)
+      if (seeingPassword == true){
+        imgVisibility.src = "images/off.png"
+        senha.type = "text"
+      } else{
+        imgVisibility.src = "images/on.png"
+        senha.type = "password"
+      }
+    }
+
+    function validar(){
+      email = document.getElementById('emailLogin').value
+      senha = document.getElementById('senhaLogin').value
+      if (email == '' || senha == ''){
+          alert("Preencha os campos!")
+      } else{
+          login = {
+            email: email,
+            senha: senha
+          }
+          resultadoReq = validarUsuario(login)
+          if(resultadoReq == false){
+            alert("Email e/ou senha errados.")
+          }
+          else{
+            window.location.href = "mensagens.html"
+          }
+        
+
+    }
+  }
+  </script>
+  <script src="js/jquery-3.6.4.min.js"></script>
+  <script src="js/api.js"></script>
+</html>
